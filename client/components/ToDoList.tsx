@@ -10,7 +10,6 @@ export default function TodoList({todos}: Props) {
  
   return (
     <>
-    <h1>To Do List</h1>
     <div>
       <ul>
         {todos.map((task) => 
