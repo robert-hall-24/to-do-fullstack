@@ -20,8 +20,7 @@ export function updateTask(updateTask: TaskData, id: number ) {
 
 export function addTask(createTask: Task) {
   const {id, task, completed} = createTask
-  const id_task = Number(id)
-  const create_task = connection('todos') .insert({id_task, task, completed})
+  const create_task = connection('todos') .insert({id, task, completed})
   return create_task
 }
 
