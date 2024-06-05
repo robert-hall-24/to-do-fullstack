@@ -1,8 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
-import { useTasks } from '../apis/use-tasks.ts'
+import { fetchTasks } from '../apis/fetch-tasks.ts'
 import AddTodo from './AddTodo.tsx'
 import TodoList from './ToDoList.tsx'
-import ToDoList from './ToDoList.tsx'
 
 function App() {
   const {
@@ -12,7 +11,7 @@ function App() {
     error,
   } = useQuery({
     queryKey: ['tasks'],
-    queryFn: () => useTasks(),
+    queryFn: () => fetchTasks(),
   })
   if (isError) {
     return error
@@ -34,6 +33,5 @@ function App() {
     )
   }
 }
-
 
 export default App

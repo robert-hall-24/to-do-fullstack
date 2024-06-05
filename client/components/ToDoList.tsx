@@ -1,23 +1,20 @@
-import { Task } from "../../models/tasks"
-import { useTasks } from "../apis/use-tasks"
+import { Task } from '../../models/tasks'
+import { useTasks } from '../apis/fetch-tasks'
 
 interface Props {
   todos: Task[]
 }
 
-
-export default function TodoList({todos}: Props) {
- 
+export default function TodoList({ todos }: Props) {
   return (
     <>
-    <div>
-      <ul>
-        {todos.map((task) => 
-        <li key={task.id}>{task.task}</li>)}
-      </ul>
-    </div>
-
+      <div>
+        <ul>
+          {todos.map((task) => (
+            <li key={task.id}>{task.task}</li>
+          ))}
+        </ul>
+      </div>
     </>
   )
 }
-
