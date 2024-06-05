@@ -1,5 +1,4 @@
 import { Task } from '../../models/tasks'
-import { useTasks } from '../apis/fetch-tasks'
 
 interface Props {
   todos: Task[]
