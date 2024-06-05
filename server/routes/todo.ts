@@ -38,4 +38,14 @@ router.post("/", async (req, res, next) => {
   
 })
 
+router.delete('/:id', async (req, res, next) => {
+  try {
+    const id = Number(req.params.id)
+    await db.deleteTask(id)
+    res.sendStatus(200)
+  } catch (e) {
+    next(e)
+  }
+})
+
 export default router
