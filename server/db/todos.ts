@@ -6,4 +6,8 @@ export function getAllTasks(): Promise<Task[]> {
 
 }
 
-console.log(getAllTasks())
+export function getTaskById(id: number): Promise<Task>  {
+  return connection("todos").where({id}).first()
+}
+
+console.log(getTaskById(2))
