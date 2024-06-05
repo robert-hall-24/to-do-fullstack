@@ -1,4 +1,4 @@
-import { Task } from "../../models/tasks";
+import { Task, TaskData } from "../../models/tasks";
 import connection from "./connection.ts";
 
 export async function getAllTasks(): Promise<Task[]> {
@@ -10,8 +10,8 @@ export function getTaskById(id: number): Promise<Task>  {
   return connection("todos").where({id}).first()
 }
 
-export function updateTask(updateTask: Task) {
-  const { id, task, completed } = updateTask
+export function updateTask(updateTask: TaskData, id: number ) {
+  const {task, completed } = updateTask
   const count = connection('todos')
   .where({ id })
   .update({ task, completed })
