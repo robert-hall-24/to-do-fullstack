@@ -7,18 +7,21 @@ import { TaskData } from '../../models/tasks'
 function AddTodo() {
   const queryClient = useQueryClient()
   const addTodoMutation = useMutation({
-    mutationFn: (task: string) => postTask(task),
+    mutationFn: (task: TaskData) => postTask(task),
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: ['task'],
+        queryKey: ['tasks'],
       })
     },
   })
 
-  const [form, setForm] = useState('')
+  const [form, setForm] = useState({
+    task: '',
+    completed: false,
+  })
 
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
-    setForm(event.target.value)
+    setForm({ task: event.target.value, completed: false })
   }
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -36,7 +39,7 @@ function AddTodo() {
           name="task"
           className="new-todo"
           placeholder="What needs to be done?"
-          value={form}
+          value={form.task}
         />
         <button>Submit</button>
       </form>
