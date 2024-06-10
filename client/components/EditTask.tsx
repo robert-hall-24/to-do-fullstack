@@ -6,10 +6,9 @@ import { updateTask } from '../apis/update-todo'
 interface Props {
   id: number
   currentTodo: string
-  OnCancel: () => void
 }
 
-export default function EditTask({ id, currentTodo, OnCancel }: Props) {
+export default function EditTask({ id, currentTodo }: Props) {
   const queryClient = useQueryClient()
   const updateTodoMutation = useMutation({
     mutationFn: (newTodo: TaskData) => updateTask(id, newTodo),
@@ -17,7 +16,6 @@ export default function EditTask({ id, currentTodo, OnCancel }: Props) {
       queryClient.invalidateQueries({
         queryKey: ['tasks'],
       })
-      OnCancel()
     },
   })
 
@@ -39,14 +37,13 @@ export default function EditTask({ id, currentTodo, OnCancel }: Props) {
     <>
       <form onSubmit={handleSubmit}>
         <input
+          id="task"
+          name="task"
           type="text"
           value={list.task}
           onChange={(e) => handleChange(e)}
         />
         <button type="submit">Update</button>
-        <button type="button" onClick={OnCancel}>
-          Cancel
-        </button>
       </form>
     </>
   )
